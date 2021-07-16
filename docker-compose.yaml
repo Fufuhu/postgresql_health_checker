@@ -1,0 +1,22 @@
+version: "3"
+
+services: 
+  client:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - USER=test
+      - DATABASE=test
+      - PGPASSWORD=test
+      - HOST=server
+    # depends_on: 
+    #   - server
+  server:
+    image: postgres:11-alpine
+    ports: 
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=test
